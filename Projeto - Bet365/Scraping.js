@@ -2,7 +2,19 @@ const {webkit} = require('playwright');
 
 (async () => {
   // Setup
-  const browser = await webkit.launch({headless: false});
+  const browser = await webkit.launch({
+    headless: false,
+        args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-gpu",
+      "--disable-extensions",
+      "--disable-dev-tools",
+      "--disable-infobars",
+      "--ignore-certificate-errors"
+    ]
+  });
   const page = await browser.newPage();
 
   // The actual interesting bit
