@@ -1,0 +1,16 @@
+{
+  "name": "projeto---bet365",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Scraping.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.26.0"
+  },
+  "dependencies": {
+    "playwright": "^1.26.0"
+  }
+}

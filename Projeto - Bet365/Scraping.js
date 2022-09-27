@@ -1,16 +1,19 @@
-const puppeteer = require('puppeteer');
+const {webkit} = require('playwright');
 
-const URL = 'https://www.bet365.com/#/HO/'
-const AOVIVO = 'https://www.bet365.com/#/IP/B1'
+(async () => {
+  // Setup
+  const browser = await webkit.launch({headless: false});
+  const page = await browser.newPage();
 
-const ScrapingData = async () => {
-  const browser = await puppeteer.launch({headless: false}); // iniciando o navegador / headless (mostra a executação da página)
-  const page = await browser.newPage(); // nova pagina
+  // The actual interesting bit
+  // await context.route('**.jpg', route => route.abort());
+  await page.goto('https://www.bet365.com/#/HO/');
+  await page.waitForLoadState('networkidle')
+  
+  await page.locator('text=Aceitar').click();
+  await page.locator('.hm-MainHeaderCentreWide > div:nth-child(2) > div').click();
+  await page.waitForURL('https://www.bet365.com/#/IP/B1')
+  await page.pause()
 
-  await page.goto(URL);
-
-  // await browser.close(); // fechando o browser
-
-}
-
-ScrapingData();
+  // await browser.close();
+})();
